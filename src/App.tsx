@@ -11,7 +11,7 @@ function App() {
         <div className='text-2xl font-semibold'>AI Video Sign Translator</div>
         <div className='flex gap-5'>
           <div className='flex flex-1 flex-col gap-5'>
-            <FileUploader />
+            <FileUploader onFileChange={(file) => console.log(file.name)} />
             <div className='flex flex-col gap-1'>
               <label>Language</label>
               <LanguageSelector />
