@@ -1,30 +1,70 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import type { SUBTITLE_FONTS } from '@/redux/constants';
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+
+export type Language = {
+  label: string;
+  value: string;
+};
+
+export type SubtitleFont = (typeof SUBTITLE_FONTS)[number];
 
 export interface VideoConfigState {
-  value: number
+  file: File | null;
+  language: Language;
+  subtitlesFont: SubtitleFont;
+  subtitlesFontSize: number;
+  subtitlesColor: string;
+  resultUrl: string | null;
+  isLoading: boolean;
 }
 
 const initialState: VideoConfigState = {
-  value: 0,
-}
+  file: null,
+  language: { label: 'Ukrainian', value: 'uk' },
+  subtitlesFont: 'Arial',
+  subtitlesFontSize: 24,
+  subtitlesColor: '#FFFFFF',
+  resultUrl: null,
+  isLoading: false,
+};
 
 export const videoConfigSlice = createSlice({
   name: 'videoConfig',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
+    setFile: (state, action: PayloadAction<File>) => {
+      state.file = action.payload;
     },
-    decrement: (state) => {
-      state.value -= 1
+    setLanguage: (state, action: PayloadAction<Language>) => {
+      state.language = action.payload;
     },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
+    setSubtitlesFont: (state, action: PayloadAction<SubtitleFont>) => {
+      state.subtitlesFont = action.payload;
+    },
+    setSubtitlesFontSize: (state, action: PayloadAction<number>) => {
+      state.subtitlesFontSize = action.payload;
+    },
+    setSubtitlesColor: (state, action: PayloadAction<string>) => {
+      state.subtitlesColor = action.payload;
+    },
+    setResultUrl: (state, action: PayloadAction<string | null>) => {
+      state.resultUrl = action.payload;
+    },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     },
   },
-})
+});
 
-export const { increment, decrement, incrementByAmount } = videoConfigSlice.actions
+export const {
+  setFile,
+  setLanguage,
+  setSubtitlesFont,
+  setSubtitlesFontSize,
+  setSubtitlesColor,
+  setResultUrl,
+  setLoading,
+} = videoConfigSlice.actions;
 
-export default videoConfigSlice.reducer
+export default videoConfigSlice.reducer;

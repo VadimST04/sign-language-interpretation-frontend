@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 @tailwind utilities;
@@ -124,4 +124,13 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border: none;
+}
+
+input[type='color']::-webkit-color-swatch {
+  border: none;
 }
