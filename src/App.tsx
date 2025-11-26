@@ -9,7 +9,8 @@ import { SubtitlesFontSelector } from '@/components/SubtitlesFontSelector';
 import { Button } from '@/components/ui/button';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { ColorPicker } from '@/components/ColorPicker';
-import { Label } from '@/components/ui/laber';
+import { Label } from '@/components/ui/label';
+import { FontSizeSelector } from '@/components/FontSizeSelector';
 
 function App() {
   const uploadedFile = useAppSelector((state) => state.videConfig.file);
@@ -26,7 +27,7 @@ function App() {
     form.append('video', uploadedFile);
     form.append('lang', language.value);
     form.append('font', subtitlesFont);
-    form.append('fontSize', String(subtitlesFontSize));
+    form.append('fontSize', subtitlesFontSize);
     form.append('color', subtitlesColor);
 
     dispatch(setResultUrl(null));
@@ -66,6 +67,11 @@ function App() {
                 <div className='space-y-1'>
                   <Label htmlFor='subtitles-font'>Subtitles Font</Label>
                   <SubtitlesFontSelector />
+                </div>
+
+                <div className='space-y-1'>
+                  <Label>Subtitles Size</Label>
+                  <FontSizeSelector />
                 </div>
               </div>
 

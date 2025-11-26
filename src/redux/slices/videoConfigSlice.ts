@@ -13,7 +13,7 @@ export interface VideoConfigState {
   file: File | null;
   language: Language;
   subtitlesFont: SubtitleFont;
-  subtitlesFontSize: number;
+  subtitlesFontSize: string;
   subtitlesColor: string;
   resultUrl: string | null;
   isLoading: boolean;
@@ -23,8 +23,8 @@ const initialState: VideoConfigState = {
   file: null,
   language: { label: 'Ukrainian', value: 'uk' },
   subtitlesFont: 'Arial',
-  subtitlesFontSize: 24,
-  subtitlesColor: '#FFFFFF',
+  subtitlesFontSize: '20',
+  subtitlesColor: '#000000',
   resultUrl: null,
   isLoading: false,
 };
@@ -42,7 +42,7 @@ export const videoConfigSlice = createSlice({
     setSubtitlesFont: (state, action: PayloadAction<SubtitleFont>) => {
       state.subtitlesFont = action.payload;
     },
-    setSubtitlesFontSize: (state, action: PayloadAction<number>) => {
+    setSubtitlesFontSize: (state, action: PayloadAction<string>) => {
       state.subtitlesFontSize = action.payload;
     },
     setSubtitlesColor: (state, action: PayloadAction<string>) => {
