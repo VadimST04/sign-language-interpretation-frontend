@@ -6,19 +6,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useState } from 'react';
+import { LANGUAGE_OPTIONS } from '@/redux/constants';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { setLanguage } from '@/redux/slices/videoConfigSlice';
 
 export const LanguageSelector = () => {
-  const [language, setLanguage] = useState<string>('English');
+  const language = useAppSelector((state) => state.videConfig.language);
+  const dispatch = useAppDispatch();
+
   return (
-    <Select onValueChange={(value) => setLanguage(value)}>
-      <SelectTrigger className='w-full'>
-        <SelectValue placeholder={language} />
+    <Select
+      defaultValue={language.value}
+      onValueChange={(value) =>
+        dispatch(
+          setLanguage({ label: LANGUAGE_OPTIONS.find((opt) => opt.value === value)!.label, value })
+        )
+      }
+    >
+      <SelectTrigger id='language' className='w-[200px]'>
+        <SelectValue placeholder={language.label} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value='english'>English</SelectItem>
-          <SelectItem value='ukrainian'>Ukrainian</SelectItem>
+          {LANGUAGE_OPTIONS.map((option) => (
+            <SelectItem key={option.value} value={option.value}>
+              {option.label}
+            </SelectItem>
+          ))}
         </SelectGroup>
       </SelectContent>
     </Select>

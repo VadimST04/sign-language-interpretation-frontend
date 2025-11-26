@@ -47,7 +47,7 @@ export const FileUploader = ({ onFileChange }: FileUploaderProps) => {
     >
       <input
         data-testid='file-input'
-        // accept={accept}
+        accept='video/mp4'
         ref={fileInput}
         type='file'
         hidden
@@ -64,7 +64,7 @@ export const FileUploader = ({ onFileChange }: FileUploaderProps) => {
           fileInput.current?.click();
         }}
       >
-        Choose file
+        Upload a file
       </Button>
     </form>
   );
