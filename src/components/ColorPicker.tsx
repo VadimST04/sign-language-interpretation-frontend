@@ -27,7 +27,7 @@ export const ColorPicker = () => {
         className='size-9 cursor-pointer appearance-none rounded-full border-2'
       />
       <Label htmlFor='subtitles-color' className='cursor-pointer bg-blue-200 p-2' style={{ color }}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Example Text
       </Label>
     </div>
   );
