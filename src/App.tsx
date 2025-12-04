@@ -70,7 +70,7 @@ function App() {
                 </div>
 
                 <div className='space-y-1'>
-                  <Label>Subtitles Size</Label>
+                  <Label>Subtitles Size (max 100)</Label>
                   <FontSizeSelector />
                 </div>
               </div>
