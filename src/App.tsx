@@ -18,6 +18,7 @@ function App() {
   const subtitlesFont = useAppSelector((state) => state.videConfig.subtitlesFont);
   const subtitlesFontSize = useAppSelector((state) => state.videConfig.subtitlesFontSize);
   const subtitlesColor = useAppSelector((state) => state.videConfig.subtitlesColor);
+  const isLoading = useAppSelector((state) => state.videConfig.isLoading);
   const dispatch = useAppDispatch();
 
   const startProcessing = async () => {
@@ -84,7 +85,11 @@ function App() {
           <div className='flex flex-1 flex-col gap-5'>
             <ProgressBar />
             <VideoPlayer />
-            <Button onClick={startProcessing} disabled={!uploadedFile} className='w-48'>
+            <Button
+              onClick={startProcessing}
+              disabled={!uploadedFile || isLoading}
+              className='w-48'
+            >
               Start Processing
             </Button>
           </div>
